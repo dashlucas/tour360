@@ -25,26 +25,26 @@
   <body>
     <a-scene>
       <a-assets>
-        <img id="city" crossorigin="anonymous" src="https://cdn.glitch.global/706eafed-b547-4595-ab35-44bced8ee34b/shot-panoramic-composition-living-room.jpg?v=1727145959228.jpg">
-        <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-        <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-        <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+        <img id="banheiro" crossorigin="anonymous" src="Banheiro.jpg">
+        <img id="thumb-banheiro" crossorigin="anonymous" src="thumb-banheiro.jpg">
+        <img id="thumb-fora" crossorigin="anonymous" src="thumb-fora.jpg">
+        <img id="thumb-sala" crossorigin="anonymous" src="thumb-sala.jpg">
         <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-        <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
-        <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+        <img id="fora" crossorigin="anonymous" src="Fora.jpg">
+        <img id="sala" crossorigin="anonymous" src="Sala.jpg">
 
       </a-assets>
 
       <!-- 360-degree image. -->
-      <a-sky id="image-360" radius="10" src="#city"
+      <a-sky id="image-360" radius="10" src="#fora"
              animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
              animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
       <!-- Image links. -->
       <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#banheiro" data-thumb="#thumb-banheiro"></a-entity>
+        <a-entity template="src: #link" data-src="#fora" data-thumb="#thumb-fora"></a-entity>
+        <a-entity template="src: #link" data-src="#sala" data-thumb="#thumb-sala"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
