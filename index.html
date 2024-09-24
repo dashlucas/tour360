@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" class="fullscreen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Image Viewer</title>
+    <script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
+    <style>
+        #vrview {
+            width: 100%;
+            height: 100%; /* Ajuste a altura conforme necessário */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>360 Image Viewer</h1>
+    <div id="vrview"></div>
+
+    <script>
+        window.addEventListener('load', function() {
+            var vrView = new VRView.Player('#vrview', {
+                image: 'shot-panoramic-composition-living-room.jpg',  // Insira o link da sua imagem 360
+                is_stereo: false  // Defina como true se a imagem for estereoscópica
+            });
+        });
+    </script>
+
+</body>
+</html>
