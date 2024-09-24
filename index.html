@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>360&deg; Image Gallery</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script> <!-- Verificar a versão atual caso dê erro -->
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script> 
     <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
@@ -53,7 +53,9 @@
              animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
              animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
-      <!-- Quadrados clicáveis (removido o layout para simplificar)
+      <!-- 
+      
+        Quadrados clicáveis (removido o layout para simplificar)
       <a-entity id="links" position="0 -1 -4">
         <a-entity geometry="primitive: plane; height: 1; width: 1"
                   material="shader: flat; src: #banheiro"
@@ -64,7 +66,9 @@
         <a-entity geometry="primitive: plane; height: 1; width: 1" position="3 0 0"
                   material="shader: flat; src: #sala"
                   event-set__click="material.src: #sala"></a-entity>
-      </a-entity> -->
+      </a-entity>
+
+      -->
 
       <!-- Camera + cursor. -->
       <a-entity camera look-controls>
