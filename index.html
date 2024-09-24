@@ -5,34 +5,45 @@
     <title>360&deg; Image Gallery</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script> 
     <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
     
-    <!-- Imagem clicavel de cada um dos locais. -->
-    <script id="link" type="text/html">
-      <a-entity class="link"
-        geometry="primitive: plane; height: 1; width: 1"
-        material="shader: flat; src: ${thumb}"
-        event-set__mouseenter="scale: 1.2 1.2 1"
-        event-set__mouseleave="scale: 1 1 1"
-        event-set__click="_target: #image-360; _delay: 300; material.src: ${src}"
-        proxy-event="event: click; to: #image-360; as: fade"
-        sound="on: click; src: #click-sound"></a-entity>
-    </script>
+    <style>
+      /* Estilizando os botões */
+      .buttons-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+      }
+
+      .gallery-button {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .gallery-button:hover {
+        background-color: #0056b3;
+      }
+    </style>
   </head>
   <body>
     <a-scene>
       <a-assets>
+        <!-- Certifique-se de que os caminhos das imagens estão corretos -->
         <img id="banheiro" crossorigin="anonymous" src="Banheiro.jpg">
-        <img id="thumb-banheiro" crossorigin="anonymous" src="thumb-banheiro.jpg">
-        <img id="thumb-fora" crossorigin="anonymous" src="thumb-fora.jpg">
-        <img id="thumb-sala" crossorigin="anonymous" src="thumb-sala.jpg">
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
         <img id="fora" crossorigin="anonymous" src="Fora.jpg">
         <img id="sala" crossorigin="anonymous" src="Sala.jpg">
-
+        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
       </a-assets>
 
       <!-- Imagem 360. -->
@@ -40,12 +51,18 @@
              animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
              animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
-      <!-- Quadrados clicáveis -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-src="#banheiro" data-thumb="#thumb-banheiro"></a-entity>
-        <a-entity template="src: #link" data-src="#fora" data-thumb="#thumb-fora"></a-entity>
-        <a-entity template="src: #link" data-src="#sala" data-thumb="#thumb-sala"></a-entity>
-      </a-entity>
+      <!-- Quadrados clicáveis (removido o layout para simplificar)
+      <a-entity id="links" position="0 -1 -4">
+        <a-entity geometry="primitive: plane; height: 1; width: 1"
+                  material="shader: flat; src: #banheiro"
+                  event-set__click="material.src: #banheiro"></a-entity>
+        <a-entity geometry="primitive: plane; height: 1; width: 1" position="1.5 0 0"
+                  material="shader: flat; src: #fora"
+                  event-set__click="material.src: #fora"></a-entity>
+        <a-entity geometry="primitive: plane; height: 1; width: 1" position="3 0 0"
+                  material="shader: flat; src: #sala"
+                  event-set__click="material.src: #sala"></a-entity>
+      </a-entity> -->
 
       <!-- Camera + cursor. -->
       <a-entity camera look-controls>
@@ -53,12 +70,25 @@
           id="cursor"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
           animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__mouseenter="_event: mouseenter; color: springgreen"
-          event-set__mouseleave="_event: mouseleave; color: black"
           raycaster="objects: .link"></a-cursor>
       </a-entity>
-      <a-entity laser-controls="hand: left"></a-entity>
-      <a-entity laser-controls="hand: right"></a-entity>
     </a-scene>
+
+    <!-- Botões para cada imagem -->
+    <div class="buttons-container">
+      <button class="gallery-button" onclick="changeImage('#banheiro')">Banheiro</button>
+      <button class="gallery-button" onclick="changeImage('#fora')">Fora</button>
+      <button class="gallery-button" onclick="changeImage('#sala')">Sala</button>
+    </div>
+
+    <script>
+      // Função para mudar a imagem 360
+      function changeImage(imageId) {
+        const sky = document.querySelector('#image-360');
+        setTimeout(() => {
+          sky.setAttribute('src', imageId);
+        }, 100); // Pequeno delay para garantir que a mudança seja aplicada corretamente
+      }
+    </script>
   </body>
 </html>
